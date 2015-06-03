@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Definitions>
+	<Definition name ="com.platform.symphony.samples.SampleApp.service.MyService" type ="RunScript" runoptions ="" packageName ="MySharingDataJava.zip" packagePath ="C:\Users\IBM_ADMIN\Desktop" isredirection ="false" >
+		<dependency name = "com.platform.symphony.samples.SampleApp.anotherservice.jar" selected = "true" path = "Z:\work\MySharingDataJava\bin\com.platform.symphony.samples.SampleApp.anotherservice.jar" />
+		<dependency name = "com.platform.symphony.samples.SampleApp.service.jar" selected = "true" path = "Z:\work\MySharingDataJava\bin\com.platform.symphony.samples.SampleApp.service.jar" />
+		<dependency name = "com.platform.symphony.samples.SharingData.client.jar" selected = "true" path = "Z:\work\MySharingDataJava\bin\com.platform.symphony.samples.SharingData.client.jar" />
+		<dependency name = "com.platform.symphony.samples.SharingData.service.jar" selected = "true" path = "Z:\work\MySharingDataJava\bin\com.platform.symphony.samples.SharingData.service.jar" />
+		<dependency name = "com.platform.symphony.samples.SharingData.common.jar" selected = "true" path = "Z:\work\MySharingDataJava\bin\com.platform.symphony.samples.SharingData.common.jar" />
+		<target name = "java" location = "C:\Users\IBM_ADMIN\Desktop" />
+	</Definition>
+</Definitions>

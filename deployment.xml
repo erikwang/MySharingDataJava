@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Deployment>
+  <install>
+    <osTypes>
+       <osType name="all" startCmd="chmod +x Runcom.platform.symphony.samples.SharingData.service.SharingDataService.sh" timeout="600" successCodes="0"/>
+    </osTypes>
+  </install>
+</Deployment>

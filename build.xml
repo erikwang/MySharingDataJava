@@ -1,0 +1,56 @@
+<project name="SharingData" default="all" basedir=".">
+	<description>
+        SharingData build file
+    </description>
+	<!-- set global properties for this project build -->	
+	<property name="project.name" value="SharingData"/>		
+	<property name="version" value="0.1"/>
+  <property name="year" value="2006"/>
+  
+  <echo message="--------- ${project.name} ${version} [${year}] ---------"/>
+  <echo message="---Copyright International Business Machines Corp, 1992-2013. US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.---"/>
+	<property name="src" location="src" />
+	<property name="build" location="bin" />
+	<property name="SvcPack" value="SharingDataServiceJava.jar" />
+	<property name="DplPack" value="SharingDataServiceJavaPackage.zip" />
+	<property name="SvcScript" value="Runcom.platform.symphony.samples.SharingData.service.SharingDataService.sh" />
+	<property name="PackageName" value="com/platform/symphony/samples/SharingData" />	
+
+	<path id="classpath">
+		<pathelement path="../../../../6.1.1/linux2.6-glibc2.3-x86_64/lib/JavaSoamApi.jar" /> 
+	</path>
+	
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<!-- <mkdir dir="${build}" /> -->
+	</target>
+
+	<target name="compile" depends="init" description="compile the source ">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	<target name="all" depends="compile" description="generate the distribution">
+		<!-- Create the distribution directory -->
+		<!-- Put files required by the service into the SharingDataServiceJava.jar file -->
+		<jar jarfile="${SvcPack}" basedir="${build}" 
+			includes="${PackageName}/common/MyInput.class 
+				  ${PackageName}/common/MyOutput.class 
+				  ${PackageName}/common/MyCommonData.class
+				  ${PackageName}/service/SharingDataService.class" />
+		<!--We include deployment.xml in our package because neither ANT jar nor zip
+      preserves execution permission of the service script. 
+  -->		  
+		<zip zipfile="${DplPack}" basedir="." includes="${SvcPack} ${SvcScript} deployment.xml" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${build}/com" />
+		<delete file="${DplPack}" />
+		<delete file="${SvcPack}" />
+	</target>
+</project>
+

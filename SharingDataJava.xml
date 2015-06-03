@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><Profile version="6.1.1" xmlns="http://www.platform.com/Symphony/Profile/Application" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Consumer applicationName="SharingDataJava" consumerId="/myconsumer/SharingDataConsumer" enableSelectiveReclaim="false" enableStandbyService="true" numOfSlotsForPreloadedServices="1" preStartApplication="false" preemptionCriteria="PolicyDefault" preemptionScope="LowerOrEqualRankedSessions" resourcePreference="Default" schedulingAffinity="None" taskHighWaterMark="1.0" taskLowWaterMark="1.0"/>
+    <SOAM version="6.1.1">
+        <SSM resReq="" workDir="${EGO_SHARED_TOP}/soam/work">
+    	     <boundaryManagerConfig>
+                <boundaries>
+                    <boundary elementName="AvailableMemory">
+                        <event name="BEV_PROACTIVE" value="50"/>
+                        <event name="BEV_SEVERE" value="40"/>
+                        <event name="BEV_CRITICAL" value="0"/>
+                        <event name="BEV_HALT" value="0"/>
+                    </boundary>
+                    <boundary elementName="AvailableVirtualAddressSpace">
+                        <event name="BEV_PROACTIVE" value="50"/>
+                        <event name="BEV_SEVERE" value="40"/>
+                        <event name="BEV_CRITICAL" value="25"/>
+                        <event name="BEV_HALT" value="15"/>
+                    </boundary>
+                </boundaries>
+            </boundaryManagerConfig>
+        </SSM>
+        <SIM startUpTimeout="120"/>
+        <DataHistory fileSwitchSize="100" lastingPeriod="96"/>
+        <PagingTasksInput blockSize="4096" diskSpace="4294967296"/>
+        <PagingTasksOutput blockSize="4096" diskSpace="4294967296"/>
+        <PagingCommonData blockSize="102400" diskSpace="8589934592"/>
+        <PagingCommonDataUpdates blockSize="102400" diskSpace="8589934592"/>
+    </SOAM>
+
+    <SessionTypes>
+		<Type abortSessionIfClientDisconnect="true" abortSessionIfTaskFail="false" name="SessionType1" priority="1" recoverable="false" serviceName="SharingDataService" sessionRetryLimit="4" suspendGracePeriod="100000" taskCleanupPeriod="100000" taskRetryLimit="5"/>
+		<Type abortSessionIfClientDisconnect="true" abortSessionIfTaskFail="false" name="SessionType2" priority="1" recoverable="false" serviceName="NewSampleService" sessionRetryLimit="4" suspendGracePeriod="100000" taskCleanupPeriod="100000" taskRetryLimit="5"/>
+		<Type abortSessionIfClientDisconnect="true" abortSessionIfTaskFail="false" name="SessionType3" priority="1" recoverable="false" serviceName="AnotherNewSampleService" sessionRetryLimit="4" suspendGracePeriod="100000" taskCleanupPeriod="100000" taskRetryLimit="5"/>
+		<Type abortSessionIfClientDisconnect="true" abortSessionIfTaskFail="false" name="SessionType4" priority="1" recoverable="false" serviceName="sympingservice" sessionRetryLimit="4" suspendGracePeriod="100000" taskCleanupPeriod="100000" taskRetryLimit="5"/>
+    </SessionTypes>
+
+	<Service description="Sample App Java" name="NewSampleService" packageName="NewSampleService" maxOtherInstances="2">
+		<osTypes>
+			<osType name="all" startCmd="${SOAM_DEPLOY_DIR}/Runcom.platform.symphony.samples.SampleApp.service.MyService.sh" workDir="${SOAM_HOME}/work">
+			<env name="PATH">/pcc/app/Linux_jdk1.7.0_x86_64/bin</env></osType>
+		</osTypes>
+
+		<Control>
+			<Method name="Register">
+				<Timeout actionOnSI="blockHost" duration="60"/>
+				<Exit actionOnSI="blockHost"/>
+			</Method>
+			<Method name="CreateService">
+				<Timeout actionOnSI="blockHost" duration="0"/>
+				<Exit actionOnSI="blockHost"/>
+				<Return actionOnSI="keepAlive" controlCode="0"/>
+				<Exception actionOnSI="blockHost" controlCode="0" type="failure"/>
+				<Exception actionOnSI="blockHost" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="SessionEnter">
+				<Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/>
+				<Exit actionOnSI="blockHost" actionOnWorkload="retry"/>
+				<Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="SessionUpdate">
+				<Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/><Exit actionOnSI="blockHost" actionOnWorkload="retry"/><Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/><Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="Invoke">
+				<Timeout actionOnSI="restartService" actionOnWorkload="retry" duration="0"/>
+				<Exit actionOnSI="restartService" actionOnWorkload="retry"/>
+				<Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="SessionLeave">
+				<Timeout actionOnSI="restartService" duration="0"/>
+				<Exit actionOnSI="restartService"/>
+				<Return actionOnSI="keepAlive" controlCode="0"/>
+				<Exception actionOnSI="keepAlive" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="DestroyService">
+				<Timeout duration="15"/>
+			</Method>
+		</Control>
+	</Service>
+	
+	<Service description="Another sample app Java" name="AnotherNewSampleService" packageName="AnotherNewSampleService" maxOtherInstances="2">
+		<osTypes>
+			<osType name="all" startCmd="${SOAM_DEPLOY_DIR}/Runcom.platform.symphony.samples.SampleApp.anotherservice.MyService.sh" workDir="${SOAM_HOME}/work">
+			<env name="PATH">/pcc/app/Linux_jdk1.7.0_x86_64/bin</env></osType>
+		</osTypes>
+		<Control>
+			<Method name="Register">
+				<Timeout actionOnSI="blockHost" duration="60"/>
+				<Exit actionOnSI="blockHost"/>
+			</Method>
+			<Method name="CreateService">
+				<Timeout actionOnSI="blockHost" duration="0"/>
+				<Exit actionOnSI="blockHost"/>
+				<Return actionOnSI="keepAlive" controlCode="0"/>
+				<Exception actionOnSI="blockHost" controlCode="0" type="failure"/>
+				<Exception actionOnSI="blockHost" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="SessionEnter">
+			<Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/>
+				<Exit actionOnSI="blockHost" actionOnWorkload="retry"/>
+				<Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="SessionUpdate">
+				<Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/>
+				<Exit actionOnSI="blockHost" actionOnWorkload="retry"/>
+				<Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="Invoke">
+				<Timeout actionOnSI="restartService" actionOnWorkload="retry" duration="0"/>
+				<Exit actionOnSI="restartService" actionOnWorkload="retry"/>
+				<Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="SessionLeave">
+				<Timeout actionOnSI="restartService" duration="0"/>
+				<Exit actionOnSI="restartService"/>
+				<Return actionOnSI="keepAlive" controlCode="0"/>
+				<Exception actionOnSI="keepAlive" controlCode="0" type="failure"/>
+				<Exception actionOnSI="keepAlive" controlCode="0" type="fatal"/>
+			</Method>
+			<Method name="DestroyService">
+				<Timeout duration="15"/>
+			</Method>
+		</Control>
+	</Service>
+
+
+	<Service description="The Symping Service" name="sympingservice">
+        <osTypes>
+            <osType fileNamePattern="%sessionId%.%taskId%." logDirectory="${SOAM_HOME}/work" name="all" startCmd="${SOAM_HOME}/${VERSION_NUM}/${EGO_MACHINE_TYPE}/bin/sympingservice" subDirectoryPattern="symping6.1.1/%sessionId%" workDir="${SOAM_HOME}/work">
+            </osType>
+        </osTypes>
+        <Control>
+            <Method name="Register">
+                <Timeout actionOnSI="blockHost" duration="60"/>
+                <Exit actionOnSI="blockHost"/>
+            </Method>
+            <Method name="CreateService">
+                <Timeout actionOnSI="blockHost" duration="0"/>
+                <Exit actionOnSI="blockHost"/>
+                <Return actionOnSI="keepAlive" controlCode="0"/>
+                <Exception actionOnSI="blockHost" controlCode="0" type="failure"/>
+                <Exception actionOnSI="blockHost" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="SessionEnter">
+                <Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/>
+                <Exit actionOnSI="blockHost" actionOnWorkload="retry"/>
+                <Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="SessionUpdate">
+                <Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/>
+                <Exit actionOnSI="blockHost" actionOnWorkload="retry"/>
+                <Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="Invoke">
+                <Timeout actionOnSI="restartService" actionOnWorkload="retry" duration="0"/>
+                <Exit actionOnSI="restartService" actionOnWorkload="retry"/>
+                <Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="SessionLeave">
+                <Timeout actionOnSI="restartService" duration="0"/>
+                <Exit actionOnSI="restartService"/>
+                <Return actionOnSI="keepAlive" controlCode="0"/>
+                <Exception actionOnSI="keepAlive" controlCode="0" type="failure"/>
+                <Exception actionOnSI="keepAlive" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="DestroyService">
+                <Timeout duration="15"/>
+            </Method>
+        </Control>
+    	</Service>
+	
+	<Service default="true" description="The Sharing Data Service" name="SharingDataService" packageName="SharingDataService" maxOtherInstances="3">
+        <osTypes>
+           <!-- NOTE: Erik - This is the default service -->
+
+           <osType name="all" startCmd="${SOAM_DEPLOY_DIR}/Runcom.platform.symphony.samples.SharingData.service.SharingDataService.sh" workDir="${SOAM_HOME}/work">
+                <env name="PATH">/pcc/app/Linux_jdk1.7.0_x86_64/bin</env>
+           </osType>
+        </osTypes>
+        <Control>
+            <Method name="Register">
+                <Timeout actionOnSI="blockHost" duration="60"/>
+                <Exit actionOnSI="blockHost"/>
+            </Method>
+            <Method name="CreateService">
+                <Timeout actionOnSI="blockHost" duration="0"/>
+                <Exit actionOnSI="blockHost"/>
+                <Return actionOnSI="keepAlive" controlCode="0"/>
+                <Exception actionOnSI="blockHost" controlCode="0" type="failure"/>
+                <Exception actionOnSI="blockHost" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="SessionEnter">
+                <Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/>
+                <Exit actionOnSI="blockHost" actionOnWorkload="retry"/>
+                <Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+		<Return actionOnSI="blockHost" actionOnWorkload="succeed" controlCode="1"/>
+		<Return actionOnSI="restartService" actionOnWorkload="succeed" controlCode="2"/>
+		<Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+		<Exception actionOnSI="restartService" actionOnWorkload="retry" controlCode="2" type="failure"/>
+                <Exception actionOnSI="restartService" actionOnWorkload="fail" controlCode="0" type="fatal"/> 
+		<Exception actionOnSI="blockHost" actionOnWorkload="fail" controlCode="1" type="fatal"/>
+		<Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="3" type="fatal"/>
+            </Method>
+            <Method name="SessionUpdate">
+                <Timeout actionOnSI="blockHost" actionOnWorkload="retry" duration="0"/>
+                <Exit actionOnSI="blockHost" actionOnWorkload="retry"/>
+                <Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+                <Exception actionOnSI="keepAlive" actionOnWorkload="fail" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="Invoke">
+                <Timeout actionOnSI="restartService" actionOnWorkload="retry" duration="0"/>
+                <Exit actionOnSI="restartService" actionOnWorkload="retry"/>
+                <Return actionOnSI="keepAlive" actionOnWorkload="succeed" controlCode="0"/>
+                <Return actionOnSI="restartService" actionOnWorkload="succeed" controlCode="2"/>
+		<Exception actionOnSI="restartService" actionOnWorkload="fail" controlCode="3" type="fatal"/>
+		<Exception actionOnSI="keepAlive" actionOnWorkload="retry" controlCode="0" type="failure"/>
+		<Exception actionOnSI="blockHost" actionOnWorkload="fail" controlCode="9" type="fatal"/>
+            </Method>
+            <Method name="SessionLeave">
+                <Timeout actionOnSI="restartService" duration="0"/>
+                <Exit actionOnSI="restartService"/>
+                <Return actionOnSI="keepAlive" controlCode="0"/>
+                <Exception actionOnSI="keepAlive" controlCode="0" type="failure"/>
+                <Exception actionOnSI="keepAlive" controlCode="0" type="fatal"/>
+            </Method>
+            <Method name="DestroyService">
+                <Timeout duration="15"/>
+            </Method>
+        </Control>
+    </Service>
+
+</Profile>

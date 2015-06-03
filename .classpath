@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/IBM_ADMIN/Desktop/eclipse/plugins/com.platform.symphony.plugins_6.1.1/JavaApiLib/JavaSoamApi.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:\Users\IBM_ADMIN\Desktop\eclipse\plugins\com.platform.symphony.plugins_1.0.0/reference/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

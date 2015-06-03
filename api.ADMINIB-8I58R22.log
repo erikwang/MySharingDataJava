@@ -1,0 +1,12 @@
+2014-12-05 16:33:12.082 Eastern Standard Time INFO [11740:12212] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [239D3870].
+2014-12-05 16:33:12.130 Eastern Standard Time INFO [11740:12212] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [239D3870].
+2014-12-05 16:33:13.031 Eastern Standard Time ERROR [11740:12212] api.base.actions.BaseAction - Domain <Application>: Application SharingDataJava does not exist. This application is not registered. {(0xc80061b7:1, 8, 25015)@(SdSsmManager.cpp:628)}
+2014-12-05 16:35:32.733 Eastern Standard Time INFO [8984:964] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [23803870].
+2014-12-05 16:35:32.740 Eastern Standard Time INFO [8984:964] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [23803870].
+2014-12-05 16:35:32.790 Eastern Standard Time ERROR [8984:964] api.base.actions.BaseAction - Domain <Application>: Application SharingDataJava does not exist. This application is not registered. {(0xc80061b7:1, 8, 25015)@(SdSsmManager.cpp:628)}
+2014-12-05 16:49:23.951 Eastern Standard Time INFO [10004:1112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [23663858].
+2014-12-05 16:49:23.960 Eastern Standard Time INFO [10004:1112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [23663858].
+2014-12-05 16:49:23.976 Eastern Standard Time ERROR [10004:1112] api.base.actions.BaseAction - Domain <Application>: Application SharingDataJava does not exist. This application is not registered. {(0xc80061b7:1, 8, 25015)@(SdSsmManager.cpp:628)}
+2014-12-05 16:51:26.401 Eastern Standard Time INFO [12024:5648] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [23933870].
+2014-12-05 16:51:26.412 Eastern Standard Time INFO [12024:5648] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [23933870].
+2014-12-05 16:51:26.426 Eastern Standard Time ERROR [12024:5648] api.base.actions.BaseAction - Domain <Application>: Application SharingDataJava does not exist. This application is not registered. {(0xc80061b7:1, 8, 25015)@(SdSsmManager.cpp:628)}
