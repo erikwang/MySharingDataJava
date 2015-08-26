@@ -28,6 +28,7 @@ public class SharingDataClient{
         final String sessionType;
         final int sleeptime;
         final int numOfTask;
+        final String fileurl;
         final String cmd;
         
         //args[]
@@ -35,11 +36,13 @@ public class SharingDataClient{
         //1 - sleeptime
         //2 - number of tasks
         //3 - cmd to be executed in service
+        //4 - dummy string size in Input object
         
         sessionType = args[0];
         sleeptime =  new Integer(args[1]).intValue();
         numOfTask = new Integer(args[2]).intValue();
         cmd = args[3];
+        fileurl = args[4];
     	
     	try{
             /****************************************************************
@@ -66,6 +69,8 @@ public class SharingDataClient{
                 // Set up our common data to be shared by all task
                 // invocations within this session
                 MyCommonData commonData = new MyCommonData("Common Data To Be Shared");
+                commonData.makeDummy(fileurl);
+                System.out.println(fileurl+" has been load as dummy with size "+commonData.getDummysize());
 
                 // Set up session creation attributes. 
                 
@@ -88,7 +93,8 @@ public class SharingDataClient{
                     // Now we will send some messages to our service. 
                     for (int taskCount = 0; taskCount < numOfTask; taskCount++){
                         // Create a message. 
-                        MyInput myInput = new MyInput(taskCount, "Hello Grid !!");
+                        System.out.println("I am going to load a file from "+fileurl+" into Input object");
+                    	MyInput myInput = new MyInput(taskCount, "Hello Grid !!",fileurl);
                         myInput.setSleeptime(sleeptime);
                         
                         myInput.setCmd(cmd);

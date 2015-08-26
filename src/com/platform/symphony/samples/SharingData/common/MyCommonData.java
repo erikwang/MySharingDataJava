@@ -19,6 +19,9 @@
  
 package com.platform.symphony.samples.SharingData.common;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.Serializable;
 
 
@@ -61,4 +64,37 @@ public class MyCommonData implements Serializable
 
     private String m_string;
     private static final long serialVersionUID = 2L;
+    byte[] fileData;
+    
+    public void makeDummy(String fileurl){
+		
+		File f = new File(fileurl);
+		//the input.dat is the file to load into memory.
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(f);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream((int) f.length());
+			byte[] block = new byte[4096];
+			int readAmount = 0;
+			while((readAmount = fis.read(block)) >= 0) {
+				if(readAmount> 0) {
+					buffer.write(block, 0, readAmount);
+				}
+
+			}
+			buffer.flush();
+			buffer.close();
+			fis.close();
+			fileData = buffer.toByteArray();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+    
+    public int getDummysize(){
+    	return fileData.length;
+    }
+    
 }

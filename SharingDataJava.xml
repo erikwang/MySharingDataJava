@@ -16,6 +16,14 @@
                         <event name="BEV_CRITICAL" value="25"/>
                         <event name="BEV_HALT" value="15"/>
                     </boundary>
+		     <boundary elementName="ProcessMemory">
+                     <!-- MaxSizeReference will be capped at "2048" by ssm when it runs on 32 bit OS -->
+                        <param name="MaxSizeReference" value="4096"/>
+                        <event name="BEV_PROACTIVE" value="99"/>
+                        <event name="BEV_SEVERE" value="99"/>
+                        <event name="BEV_CRITICAL" value="97"/>
+                        <event name="BEV_HALT" value="50"/>
+	             </boundary>
                 </boundaries>
             </boundaryManagerConfig>
         </SSM>
