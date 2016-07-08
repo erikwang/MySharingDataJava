@@ -20,7 +20,7 @@
 # 1. You do not need to modify JAVA_SDK_JARFILE.
 # It has already been set by the Symphony Eclipse IDE pluggin. 
 ###################
-JAVA_SDK_JARFILE=$SOAM_HOME/6.1.1/$EGO_MACHINE_TYPE/lib/JavaSoamApi.jar
+JAVA_SDK_JARFILE=$SOAM_HOME/7.1.1/$EGO_MACHINE_TYPE/lib/JavaSoamApi.jar
 
 ###################
 # 2. This is where we put your dependent JARs containing all the implementation 

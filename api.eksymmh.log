@@ -136,3 +136,155 @@
 2015-05-27 19:17:15.764 GMT INFO [15579:140011851630336] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f570436ff20].
 2015-05-27 19:19:32.126 GMT INFO [17947:140486412388096] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fc58436ff20].
 2015-05-27 19:19:32.138 GMT INFO [17947:140486412388096] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fc58436ff20].
+2015-06-15 20:56:57.155 GMT INFO [20310:139718846195488] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0xc4ebe0].
+2015-06-15 20:56:57.160 GMT INFO [20310:139718846195488] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0xc4ebe0].
+2015-06-15 20:57:10.499 GMT INFO [20310:139718846195488] api.base.BaseSession - Domain <Application> : The number of tasks received for the life of session "3101" was "20".
+2015-06-15 20:57:33.451 GMT INFO [21040:140155430582016] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f78743704a0].
+2015-06-15 20:57:33.458 GMT INFO [21040:140155430582016] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f78743704a0].
+2015-06-15 20:58:48.525 GMT INFO [22389:140240255084288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f8c343684b0].
+2015-06-15 20:58:48.535 GMT INFO [22389:140240255084288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f8c343684b0].
+2015-06-15 20:59:15.702 GMT INFO [22968:140101569025792] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f6be8368410].
+2015-06-15 20:59:15.709 GMT INFO [22968:140101569025792] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f6be8368410].
+2015-06-15 20:59:56.111 GMT INFO [23730:139724093507328] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f14043704a0].
+2015-06-15 20:59:56.120 GMT INFO [23730:139724093507328] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f14043704a0].
+2015-06-15 21:00:59.791 GMT INFO [24883:139765474506496] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f1da83684b0].
+2015-06-15 21:00:59.801 GMT INFO [24883:139765474506496] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f1da83684b0].
+2015-08-26 19:19:46.024 GMT INFO [21049:139959349675776] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f4acc35ff80].
+2015-08-26 19:19:46.040 GMT INFO [21049:139959349675776] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f4acc35ff80].
+2015-08-26 19:20:30.373 GMT INFO [21929:140306388862720] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f9b9836ff60].
+2015-08-26 19:20:30.381 GMT INFO [21929:140306388862720] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f9b9836ff60].
+2015-08-26 19:20:43.209 GMT INFO [22292:139695823218432] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f0d70377f50].
+2015-08-26 19:20:43.218 GMT INFO [22292:139695823218432] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f0d70377f50].
+2015-08-26 19:20:49.720 GMT INFO [22349:140277919291136] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f94f8367f70].
+2015-08-26 19:20:49.730 GMT INFO [22349:140277919291136] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f94f8367f70].
+2015-08-26 19:23:20.597 GMT INFO [25212:139917613664000] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f411436ff60].
+2015-08-26 19:23:20.616 GMT INFO [25212:139917613664000] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f411436ff60].
+2015-08-26 19:23:48.743 GMT INFO [25935:140081138452224] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f672835ff80].
+2015-08-26 19:23:48.749 GMT INFO [25935:140081138452224] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f672835ff80].
+2015-08-26 19:24:25.717 GMT INFO [26445:140117564614400] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f6fa0377f30].
+2015-08-26 19:24:25.724 GMT INFO [26445:140117564614400] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f6fa0377f30].
+2015-08-26 19:24:45.164 GMT INFO [26848:140030003926784] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f5b4035ff80].
+2015-08-26 19:24:45.177 GMT INFO [26848:140030003926784] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f5b4035ff80].
+2015-08-26 19:25:05.917 GMT INFO [27244:140190155781888] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f8088377f50].
+2015-08-26 19:25:05.931 GMT INFO [27244:140190155781888] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f8088377f50].
+2015-08-26 19:26:09.090 GMT INFO [28404:140305012000512] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f9b4837ff40].
+2015-08-26 19:26:09.104 GMT INFO [28404:140305012000512] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f9b4837ff40].
+2015-08-26 19:26:37.491 GMT INFO [28846:139925587732224] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f42f0367f70].
+2015-08-26 19:26:37.504 GMT INFO [28846:139925587732224] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f42f0367f70].
+2015-08-26 19:29:47.172 GMT INFO [32573:140262849668864] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f917435ff80].
+2015-08-26 19:29:47.180 GMT INFO [32573:140262849668864] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f917435ff80].
+2015-08-26 19:31:45.629 GMT INFO [2466:140430667560704] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fb88835fff0].
+2015-08-26 19:31:45.637 GMT INFO [2466:140430667560704] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fb88835fff0].
+2015-08-26 19:35:18.250 GMT INFO [6584:140542852237056] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fd2a8360040].
+2015-08-26 19:35:18.258 GMT INFO [6584:140542852237056] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fd2a8360040].
+2015-08-26 19:35:54.919 GMT INFO [7355:139661371066112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f056c368030].
+2015-08-26 19:35:54.929 GMT INFO [7355:139661371066112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f056c368030].
+2015-08-26 19:36:27.395 GMT INFO [8049:140261897324288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f913c378bd0].
+2015-08-26 19:36:27.403 GMT INFO [8049:140261897324288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f913c378bd0].
+2015-08-26 19:39:51.947 GMT INFO [11684:140161199314688] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f79cc360040].
+2015-08-26 19:39:51.954 GMT INFO [11684:140161199314688] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f79cc360040].
+2015-08-26 19:41:10.105 GMT INFO [13221:140441380198144] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fbb08368030].
+2015-08-26 19:41:10.119 GMT INFO [13221:140441380198144] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fbb08368030].
+2015-08-26 19:42:22.287 GMT INFO [14445:139931587864320] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f4454368030].
+2015-08-26 19:42:22.298 GMT INFO [14445:139931587864320] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f4454368030].
+2015-08-26 19:42:50.729 GMT INFO [15179:140406105958144] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fb2d0370ff0].
+2015-08-26 19:42:50.738 GMT INFO [15179:140406105958144] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fb2d0370ff0].
+2015-08-26 19:45:10.543 GMT INFO [17603:140374364858112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fab6c368030].
+2015-08-26 19:45:10.550 GMT INFO [17603:140374364858112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fab6c368030].
+2015-08-26 19:45:49.093 GMT INFO [18336:140690051000064] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7ff4ec368030].
+2015-08-26 19:45:49.105 GMT INFO [18336:140690051000064] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7ff4ec368030].
+2015-08-26 19:46:03.651 GMT INFO [18701:140282332587776] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f9600378f70].
+2015-08-26 19:46:03.661 GMT INFO [18701:140282332587776] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f9600378f70].
+2015-08-26 19:47:19.176 GMT INFO [20064:140517754967808] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fccd0360040].
+2015-08-26 19:47:19.189 GMT INFO [20064:140517754967808] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fccd0360040].
+2015-08-26 19:48:45.708 GMT INFO [21690:140261511849728] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f9124360030].
+2015-08-26 19:48:45.714 GMT INFO [21690:140261511849728] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f9124360030].
+2015-08-26 19:49:01.104 GMT INFO [22102:140647612684032] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7feb0c360040].
+2015-08-26 19:49:01.112 GMT INFO [22102:140647612684032] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7feb0c360040].
+2015-08-26 19:49:01.163 GMT ERROR [22102:140647612684032] api.base.actions.BaseAction - Domain <System>:A new connection with ID 6c063700-2e59-1033-c000-525400152f29-140314703427328-20406 was rejected because of insufficient system resources. There may be either insufficient memory or virtual address space available to the application. Please adjust the boundaryManagerConfig settings in the application profile.  {(0x89007924:1, 9, 31012)@(frontend.cpp:467)}
+2015-08-26 19:49:49.430 GMT INFO [22956:139986569840384] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f5124368030].
+2015-08-26 19:49:49.439 GMT INFO [22956:139986569840384] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f5124368030].
+2015-08-26 19:49:49.505 GMT ERROR [22956:139986569840384] api.base.actions.BaseAction - Domain <System>:A new connection with ID 88d6bddc-2e59-1033-c000-525400152f29-140314703427328-20406 was rejected because of insufficient system resources. There may be either insufficient memory or virtual address space available to the application. Please adjust the boundaryManagerConfig settings in the application profile.  {(0x89007924:1, 9, 31012)@(frontend.cpp:467)}
+2015-08-26 19:50:09.213 GMT INFO [23386:140051729807104] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f604c381360].
+2015-08-26 19:50:09.228 GMT INFO [23386:140051729807104] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f604c381360].
+2015-08-26 19:50:23.083 GMT INFO [23768:139863691486976] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f3484368040].
+2015-08-26 19:50:23.097 GMT INFO [23768:139863691486976] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f3484368040].
+2015-08-26 19:50:23.179 GMT ERROR [23768:139863691486976] api.base.actions.BaseAction - Domain <System>:A new connection with ID 9ce8187a-2e59-1033-c000-525400152f29-140314703427328-20406 was rejected because of insufficient system resources. There may be either insufficient memory or virtual address space available to the application. Please adjust the boundaryManagerConfig settings in the application profile.  {(0x89007924:1, 9, 31012)@(frontend.cpp:467)}
+2015-08-26 19:52:47.179 GMT INFO [26255:140238402266880] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f8bc4367f20].
+2015-08-26 19:52:47.196 GMT INFO [26255:140238402266880] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f8bc4367f20].
+2015-08-26 19:52:56.214 GMT INFO [26609:140682419312384] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7ff324370020].
+2015-08-26 19:52:56.228 GMT INFO [26609:140682419312384] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7ff324370020].
+2015-08-26 19:53:51.749 GMT INFO [27462:140609782892288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fe23c3703a0].
+2015-08-26 19:53:51.756 GMT INFO [27462:140609782892288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fe23c3703a0].
+2015-08-26 19:53:51.933 GMT ERROR [27462:140609782892288] api.base.actions.BaseAction - Domain <System>:A new connection with ID 195658a4-2e5a-1033-c000-525400152f29-140314703427328-20406 was rejected because of insufficient system resources. There may be either insufficient memory or virtual address space available to the application. Please adjust the boundaryManagerConfig settings in the application profile.  {(0x89007924:1, 9, 31012)@(frontend.cpp:467)}
+2015-08-26 19:54:27.944 GMT INFO [28212:140717135775488] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7ffb3c360040].
+2015-08-26 19:54:27.956 GMT INFO [28212:140717135775488] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7ffb3c360040].
+2015-08-26 20:40:28.938 GMT INFO [13989:140150090479360] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f77343705e0].
+2015-08-26 20:40:28.948 GMT INFO [13989:140150090479360] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f77343705e0].
+2015-08-26 20:40:29.140 GMT ERROR [13989:140150090479360] api.base.actions.BaseAction - Domain <Application>: Application: SharingDataJava is disabled. Enable the application and try again.  {(0xc80061bc:1, 8, 25020)@(SdApplication.cpp:471)}
+2015-08-26 20:40:52.273 GMT INFO [14414:139790017545984] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f2360360600].
+2015-08-26 20:40:52.285 GMT INFO [14414:139790017545984] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f2360360600].
+2015-08-26 21:35:14.515 GMT INFO [9656:140378159290112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fac50360660].
+2015-08-26 21:35:14.522 GMT INFO [9656:140378159290112] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fac50360660].
+2015-11-05 21:10:08.729 GMT INFO [16060:140559408273152] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fd68431bf90].
+2015-11-05 21:10:08.732 GMT INFO [16060:140559408273152] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fd68431bf90].
+2015-11-05 21:10:47.416 GMT INFO [17118:139697377380096] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f0dd0313fa0].
+2015-11-05 21:10:47.431 GMT INFO [17118:139697377380096] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f0dd0313fa0].
+2015-11-05 21:10:59.823 GMT INFO [17188:140278703208192] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f9528323f80].
+2015-11-05 21:10:59.829 GMT INFO [17188:140278703208192] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f9528323f80].
+2015-11-05 21:11:16.883 GMT INFO [17574:139935793260288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f455031bf90].
+2015-11-05 21:11:16.886 GMT INFO [17574:139935793260288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f455031bf90].
+2015-12-02 21:36:44.494 GMT INFO [17216:139654565312288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x10e11d0].
+2015-12-02 21:36:44.507 GMT INFO [17216:139654565312288] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x10e11d0].
+2015-12-02 21:36:51.628 GMT INFO [17216:139654284179200] api.base.BaseSession - Domain <Application> : The number of tasks received for the life of session "501" was "20".
+2016-01-29 21:54:09.162 GMT INFO [14312:139690736568064] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f0c44323ff0].
+2016-01-29 21:54:09.166 GMT INFO [14312:139690736568064] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f0c44323ff0].
+2016-01-29 21:54:09.178 GMT ERROR [14312:139690736568064] api.base.actions.BaseAction - Domain <Application>: Application: SharingDataJava is disabled. Enable the application and try again.  {(0xc80061bc:1, 8, 25020)@(SdApplication.cpp:467)}
+2016-01-29 21:54:25.630 GMT INFO [14683:139637343090432] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7effd4323ff0].
+2016-01-29 21:54:25.634 GMT INFO [14683:139637343090432] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7effd4323ff0].
+2016-02-01 23:54:55.906 GMT INFO [28444:140321535809280] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f9f20323ff0].
+2016-02-01 23:54:55.911 GMT INFO [28444:140321535809280] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f9f20323ff0].
+2016-02-01 23:56:48.430 GMT INFO [30460:140475996305152] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fc31831c000].
+2016-02-01 23:56:48.437 GMT INFO [30460:140475996305152] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fc31831c000].
+2016-02-01 23:57:26.479 GMT INFO [30460:140475004606208] api.base.ConnectionManager - Domain <SOAM>: A disconnection from the Middleware was sensed. The connection to "eksymmh2.gss.platformlab.ibm.com:43427" was broken.
+2016-02-01 23:57:27.575 GMT INFO [30460:140475004606208] api.base.ConnectionManager - Domain <SOAM>: Client successfully re-connected to the Middleware at "eksymmh2.gss.platformlab.ibm.com:43427".
+2016-02-02 00:01:54.801 GMT INFO [3516:140648440010496] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7feb4031c000].
+2016-02-02 00:01:54.808 GMT INFO [3516:140648440010496] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7feb4031c000].
+2016-02-02 00:02:23.187 GMT INFO [4421:139783967901440] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f21f8314010].
+2016-02-02 00:02:23.195 GMT INFO [4421:139783967901440] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f21f8314010].
+2016-02-02 00:02:35.824 GMT INFO [4597:140632245769984] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fe778314010].
+2016-02-02 00:02:35.828 GMT INFO [4597:140632245769984] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fe778314010].
+2016-02-02 00:03:27.893 GMT INFO [5729:139819962873600] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f2a5831c000].
+2016-02-02 00:03:27.898 GMT INFO [5729:139819962873600] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f2a5831c000].
+2016-02-02 00:03:55.267 GMT INFO [6155:140218280564480] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f8718323ff0].
+2016-02-02 00:03:55.277 GMT INFO [6155:140218280564480] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f8718323ff0].
+2016-02-02 00:05:14.575 GMT INFO [7693:140646942324480] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7feae432bfe0].
+2016-02-02 00:05:14.580 GMT INFO [7693:140646942324480] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7feae432bfe0].
+2016-02-02 00:06:20.112 GMT INFO [8852:140146895755008] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f767831c000].
+2016-02-02 00:06:20.116 GMT INFO [8852:140146895755008] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f767831c000].
+2016-02-02 00:11:48.883 GMT INFO [14937:140358245443360] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0xd828a0].
+2016-02-02 00:11:48.888 GMT INFO [14937:140358245443360] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0xd828a0].
+2016-02-02 00:12:28.099 GMT INFO [14937:140358054835968] api.base.ConnectionManager - Domain <SOAM>: A disconnection from the Middleware was sensed. The connection to "eksymmh2.gss.platformlab.ibm.com:42941" was broken.
+2016-02-02 00:12:55.832 GMT INFO [14937:140358054835968] api.base.ConnectionManager - Domain <SOAM>: Client successfully re-connected to the Middleware at "eksymmh2.gss.platformlab.ibm.com:42941".
+2016-02-02 00:17:02.921 GMT INFO [14937:140358040049408] api.base.BaseSession - Domain <Application> : The number of tasks received for the life of session "1101" was "0".
+2016-02-02 00:22:04.985 GMT INFO [26140:139920164931360] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x106d8a0].
+2016-02-02 00:22:04.988 GMT INFO [26140:139920164931360] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x106d8a0].
+2016-02-02 00:30:31.441 GMT INFO [2977:140211849606944] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x13578a0].
+2016-02-02 00:30:31.444 GMT INFO [2977:140211849606944] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x13578a0].
+2016-02-02 00:30:59.820 GMT INFO [2977:140211711497984] api.base.BaseSession - Domain <Application> : The number of tasks received for the life of session "1201" was "2".
+2016-02-02 00:35:43.237 GMT INFO [8720:140584596879136] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x9238a0].
+2016-02-02 00:35:43.244 GMT INFO [8720:140584596879136] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x9238a0].
+2016-02-02 00:35:50.929 GMT INFO [8720:140584438736640] api.base.BaseSession - Domain <Application> : The number of tasks received for the life of session "1202" was "2".
+2016-02-02 00:36:21.085 GMT INFO [9448:139718090671904] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x26168a0].
+2016-02-02 00:36:21.092 GMT INFO [9448:139718090671904] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x26168a0].
+2016-02-02 00:36:46.300 GMT INFO [9448:139717917562624] api.base.BaseSession - Domain <Application> : The number of tasks received for the life of session "1203" was "2".
+2016-02-02 00:42:09.723 GMT INFO [15682:140106349168416] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x246f8a0].
+2016-02-02 00:42:09.727 GMT INFO [15682:140106349168416] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x246f8a0].
+2016-02-02 00:42:14.441 GMT INFO [15682:140106349168416] api.base.BaseSession - Domain <Application> : The number of tasks received for the life of session "1204" was "2".
+2016-02-03 20:39:43.681 GMT INFO [15168:140143426676480] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f75a8362ca0].
+2016-02-03 20:39:43.697 GMT INFO [15168:140143426676480] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f75a8362ca0].
+2016-02-03 20:39:43.718 GMT ERROR [15168:140143426676480] api.base.actions.BaseAction - Domain <Application>: Application: SharingDataJava is disabled. Enable the application and try again.  {(0xc80061bc:1, 8, 25020)@(SdApplication.cpp:471)}
+2016-02-03 20:40:16.358 GMT INFO [15975:140220135249664] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f8784362ca0].
+2016-02-03 20:40:16.368 GMT INFO [15975:140220135249664] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f8784362ca0].
+2016-02-03 20:41:14.270 GMT INFO [16856:140656490190592] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fed1c36ac50].
+2016-02-03 20:41:14.281 GMT INFO [16856:140656490190592] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fed1c36ac50].

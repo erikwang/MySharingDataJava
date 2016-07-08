@@ -19,31 +19,115 @@
  
 package com.platform.symphony.samples.SharingData.client;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.platform.symphony.soam.*;
 import com.platform.symphony.samples.SharingData.common.*;
 
 
+//define a class for get args from submit command
+class Option {
+    String flag, opt;
+    public Option(String flag, String opt) { this.flag = flag; this.opt = opt; }
+    
+    public String getflag(){
+    	return this.flag;
+    }
+    
+    public String getopt(){
+    	return this.opt;
+    }
+}
+
 public class SharingDataClient{
     public static void main(String args[]){
-        final String sessionType;
-        final int sleeptime;
-        final int numOfTask;
-        final String fileurl;
-        final String cmd;
+        String sessionType = null;
+        int sleeptime = 0;
+        int numOfTask = 0;
+        int sessionid = 0;
+        String username = null;
+        String password = null;
+        String fileurl = null;
+        String cmd = null;
+        boolean detach = false;
+        int hmtaskid = 0;
+        int memoryconsume = 100;
+        
+        List<Option> optsList = new ArrayList<Option>();
         
         //args[]
-        //0 - sessionType, defined in application profile
-        //1 - sleeptime
-        //2 - number of tasks
-        //3 - cmd to be executed in service
-        //4 - dummy string size in Input object
+        //s - sessionType, defined in application profile
+        //r - sleeptime
+        //m - number of tasks
+        //u - username
+        //x - password
+        //c - cmd to be executed in service instance
+        //d - use a file to simulate dummy common data
+        //R - session id to be re-connect to
+        //Q - close the client if tasks are submitted to a new created session as DETACH_ON_CLOSE
+        //C - add additional M memory usage for a task
+        //M - additional memory usage for a task 
         
-        sessionType = args[0];
-        sleeptime =  new Integer(args[1]).intValue();
-        numOfTask = new Integer(args[2]).intValue();
-        cmd = args[3];
-        fileurl = args[4];
-    	
+
+        for (int t=0; t < args.length; t++){
+        	switch (args[t].charAt(0)) {
+            	case '-':
+                    if (args[t].length() < 2){
+                        throw new IllegalArgumentException("Not a valid argument: "+args[t]);
+                    }else{
+                    	if (args.length-1 == t){
+                            throw new IllegalArgumentException("Expected arg after: "+args[t]);
+                        }
+                        // -opt
+                        optsList.add(new Option(args[t], args[t+1]));
+                        System.out.println("args = "+args[t]+";  value = "+args[t+1]);
+                        switch (args[t].charAt(1)){
+                        	case 's':
+                        		sessionType = args[t+1];
+                        		break;
+                        	case 'r':
+                        		try{
+                        			sleeptime =  new Integer(args[t+1]).intValue();	
+                        		}catch (Exception e){
+                        			e.printStackTrace();
+                        		}
+                        		break;
+                        	case 'm':
+                        		numOfTask = new Integer(args[t+1]).intValue();
+                        		break;
+                        	case 'u':
+                        		username = args[t+1];
+                        		break;
+                        	case 'x':
+                        		password = args[t+1];
+                        		break;
+                        	case 'c':
+                        		cmd = args[t+1];
+                        		break;
+                        	case 'd':
+                        		fileurl = args[t+1];
+                        		break;
+                        	case 'R':
+                        		sessionid = new Integer(args[t+1]).intValue();
+                        		break;
+                        	case 'Q':
+                        		detach = new Boolean(args[t+1]);
+                        		break;
+                        	case 'C':
+                        		hmtaskid = new Integer(args[t+1]).intValue();
+                        		break;
+                        	case 'M':
+                        		memoryconsume = new Integer(args[t+1]).intValue();
+                        		break;
+                        }
+                    }
+                t++;
+               }
+        }
+        
+        //System.out.println("The args looks like:");
+        //showOptsList(optsList);
+           	
     	try{
             /****************************************************************
              * We should initialize the API before using any API calls. 
@@ -57,89 +141,107 @@ public class SharingDataClient{
             // Set up application authentication information using the
             // default security provider. Ensure it exists for the lifetime
             // of the connection. 
-            DefaultSecurityCallback securityCB = new DefaultSecurityCallback("Guest", "Guest");
+            //DefaultSecurityCallback securityCB = new DefaultSecurityCallback("Guest", "Guest");
+            DefaultSecurityCallback securityCB = new DefaultSecurityCallback(username, password);
             Connection connection = null;
             try{
                 // Connect to the specified application. 
                 connection = SoamFactory.connect(appName, securityCB);
-
+                
+                
                 // Retrieve and print our connection ID. 
                 System.out.println("connection ID=" + connection.getId());
 
                 // Set up our common data to be shared by all task
                 // invocations within this session
-                MyCommonData commonData = new MyCommonData("Common Data To Be Shared");
-                commonData.makeDummy(fileurl);
-                System.out.println(fileurl+" has been load as dummy with size "+commonData.getDummysize());
+                SessionCreationAttributes attributes = new SessionCreationAttributes();
+                
+                if(fileurl != null){
+                	MyCommonData commonData = new MyCommonData("Common Data To Be Shared");
+                    commonData.makeDummy(fileurl);
+                    System.out.println(fileurl+" has been load as dummy with size "+commonData.getDummysize());
+                    attributes.setCommonData(commonData);
+                }
 
                 // Set up session creation attributes. 
-                
-                
-                SessionCreationAttributes attributes = new SessionCreationAttributes();
                 attributes.setSessionName("mySession");
                 attributes.setSessionType(sessionType);
                 attributes.setSessionFlags(Session.SYNC);
-                attributes.setCommonData(commonData);
-
-                // Create a session with the provided attributes. 
-                Session session = null;
+                attributes.setSessionPriority(1);
                 
+                //Prepare for the session, either create a new one or open the existed one with session ID
+                Session session = null;
                 try{
-                    session = connection.createSession(attributes);
+                	if(sessionid != 0){
+                		//connect to existed session
+                		SessionOpenAttributes oattribute = new SessionOpenAttributes();
+                		oattribute.setSessionId(""+sessionid);
+                		session = connection.openSession(oattribute);
+                	}else{
+                		//Create a session with the provided attributes.
+                		session = connection.createSession(attributes);
+                		
+                		//Sent tasks to the session if it is a new one
+                		for (int taskCount = 0; taskCount < numOfTask; taskCount++){
+                            // Create a message. 
+                            //System.out.println("I am going to load a file from "+fileurl+" into Input object");
+                        	MyInput myInput = new MyInput(taskCount, "Hello Grid !!",fileurl);
+                            myInput.setSleeptime(sleeptime);
+                            myInput.setHmtaskid(hmtaskid);
+                            myInput.setMemoryconsume(memoryconsume);
 
+                            // Create task attributes. 
+                            TaskSubmissionAttributes taskAttr = new TaskSubmissionAttributes();
+                            taskAttr.setTaskInput(myInput);
+                            
+                            // Send it. 
+                            TaskInputHandle input = session.sendTaskInput(taskAttr);
+
+                            // Retrieve and print task ID. 
+                            System.out.println("task submitted with ID : " + input.getId());
+                        }
+                	}
+                                                         
                     // Retrieve and print session ID. 
                     System.out.println("Session ID:" + session.getId());
+                    
+                    if (detach){
+                    	session.close(SessionCloseFlags.DETACH_ON_CLOSE);
+                    	session.close();
+                    	System.out.println("Successfully detached from session " + session.getId());
+                        session = null;
+                    }else{
+                    	// Now get our results - will block here until all tasks
+                        // retrieved.
+                        EnumItems enumOutput = session.fetchTaskOutput(numOfTask);
+                    
+                        // Inspect results. 
+                        TaskOutputHandle output = enumOutput.getNext();
+                        while(output != null){
+                            // Check for success of task. 
+                            if (output.isSuccessful()){
+                                // Get the message returned from the service. 
+                                MyOutput myOutput = (MyOutput)output.getTaskOutput();
 
-                    // Now we will send some messages to our service. 
-                    for (int taskCount = 0; taskCount < numOfTask; taskCount++){
-                        // Create a message. 
-                        System.out.println("I am going to load a file from "+fileurl+" into Input object");
-                    	MyInput myInput = new MyInput(taskCount, "Hello Grid !!",fileurl);
-                        myInput.setSleeptime(sleeptime);
-                        
-                        myInput.setCmd(cmd);
-                        System.out.println("CMD is"+ cmd);
-                        
-                        // Create task attributes. 
-                        TaskSubmissionAttributes taskAttr = new TaskSubmissionAttributes();
-                        taskAttr.setTaskInput(myInput);
+                                // Display content of reply. 
+                                System.out.println("\nTask Succeeded [" +  output.getId() + "]");
+                                System.out.println("Your Internal ID was : " + myOutput.getId());
+                                System.out.println("Estimated runtime was recorded as : " + myOutput.getRunTime());
+                                System.out.println(myOutput.getString());
+                            }else{
+                                // Get the exception associated with this task. 
+                                SoamException ex = output.getException();
+                                System.out.println("Task Not Successful : ");
+                                System.out.println(ex.toString());
+                            }
+                            output = enumOutput.getNext();
+    					}						
+                        // Now get our results - will block here until all tasks
+                        // retrieved. 
 
-                        // Send it. 
-                        TaskInputHandle input = session.sendTaskInput(taskAttr);
-
-                        // Retrieve and print task ID. 
-                        System.out.println("task submitted with ID : " + input.getId());
                     }
- 
-                    // Now get our results - will block here until all tasks
-                    // retrieved. 
-                    EnumItems enumOutput = session.fetchTaskOutput(numOfTask);
-                
-                    // Inspect results. 
-                    TaskOutputHandle output = enumOutput.getNext();
-                    while(output != null){
-                        // Check for success of task. 
-                        if (output.isSuccessful()){
-                            // Get the message returned from the service. 
-                            MyOutput myOutput = (MyOutput)output.getTaskOutput();
 
-                            // Display content of reply. 
-                            System.out.println("\nTask Succeeded [" +  output.getId() + "]");
-                            System.out.println("Your Internal ID was : " + myOutput.getId());
-                            System.out.println("Estimated runtime was recorded as : " + myOutput.getRunTime());
-                            System.out.println(myOutput.getString());
-                        }else{
-                            // Get the exception associated with this task. 
-                            SoamException ex = output.getException();
-                            System.out.println("Task Not Successful : ");
-                            System.out.println(ex.toString());
-                        }
-                        output = enumOutput.getNext();
-					}						
-                    // Now get our results - will block here until all tasks
-                    // retrieved. 
-                } 
-			
+               }		
                 finally{
                     /********************************************************
                      * Mandatory: Close session. 
@@ -148,7 +250,7 @@ public class SharingDataClient{
                         session.close();
                         System.out.println("Session closed");
                     }
-                } 
+                }
             }
             finally{
                 /************************************************************
@@ -163,7 +265,7 @@ public class SharingDataClient{
         catch (Exception ex){
             // Report exception.
             System.out.println("exception caught ... ");
-            System.out.println(ex.toString());
+            ex.printStackTrace();
         }
         
     	finally{
@@ -175,5 +277,12 @@ public class SharingDataClient{
             SoamFactory.uninitialize();
             System.out.println("All Done !!");
         }
+    }
+    
+    public static void showOptsList(List<Option> list){
+    	for (int i = 0; i < list.size(); i++){
+    		System.out.println(list.get(i).getflag());
+    		System.out.println(list.get(i).getopt());
+    	}
     }
 }

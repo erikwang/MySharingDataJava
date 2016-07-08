@@ -1,6 +1,0 @@
-2015-02-02 22:56:56.421 GMT INFO [9820:140570368890656] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x1754b50].
-2015-02-02 22:56:56.427 GMT INFO [9820:140570368890656] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x1754b50].
-2015-02-02 22:56:56.481 GMT ERROR [9820:140570368890656] api.base.actions.BaseAction - Domain <Application>: Application: symexec6.1.1 is disabled. Enable the application and try again.  {(0xc80061bc:1, 8, 25020)@(SdApplication.cpp:471)}
-2015-02-02 22:57:15.963 GMT INFO [10204:140132931327776] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x2341b50].
-2015-02-02 22:57:15.971 GMT INFO [10204:140132931327776] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x2341b50].
-2015-02-02 22:57:15.995 GMT ERROR [10204:140132931327776] api.base.actions.BaseAction - Domain <Application>: Application: symexec6.1.1 is disabled. Enable the application and try again.  {(0xc80061bc:1, 8, 25020)@(SdApplication.cpp:471)}

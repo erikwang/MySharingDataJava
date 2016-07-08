@@ -4,3 +4,17 @@
 2014-11-27 21:59:41.541 GMT INFO [1407:140611023628032] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fe2883994e0].
 2015-01-12 23:00:31.943 GMT INFO [20826:140187404232448] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f7fe434dd80].
 2015-01-12 23:00:31.950 GMT INFO [20826:140187404232448] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f7fe434dd80].
+2015-08-26 18:46:31.536 GMT INFO [22591:139788335159040] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f22fc3630f0].
+2015-08-26 18:46:31.546 GMT INFO [22591:139788335159040] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f22fc3630f0].
+2015-08-26 18:46:52.668 GMT INFO [23005:140004371531520] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f55483734c0].
+2015-08-26 18:46:52.678 GMT INFO [23005:140004371531520] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f55483734c0].
+2015-08-26 18:54:24.060 GMT INFO [31410:139757342988032] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f1bc43631b0].
+2015-08-26 18:54:24.072 GMT INFO [31410:139757342988032] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f1bc43631b0].
+2015-08-26 19:00:30.418 GMT INFO [5794:140431778281216] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fb8cc36bca0].
+2015-08-26 19:00:30.432 GMT INFO [5794:140431778281216] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fb8cc36bca0].
+2015-08-26 19:00:49.466 GMT INFO [6175:139649665570560] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7f02b036b880].
+2015-08-26 19:00:49.476 GMT INFO [6175:139649665570560] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7f02b036b880].
+2015-08-26 19:01:34.293 GMT INFO [7006:140479933277952] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fc40037b890].
+2015-08-26 19:01:34.306 GMT INFO [7006:140479933277952] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fc40037b890].
+2015-08-26 19:03:30.721 GMT INFO [8936:140466912679680] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully opened handle to EGO [0x7fc0f8363c70].
+2015-08-26 19:03:30.734 GMT INFO [8936:140466912679680] api.base.EGOAPIWrapper - Domain <SOAM>: Successfully closed handle to EGO [0x7fc0f8363c70].

@@ -7,7 +7,7 @@
 #
 ######################################################################
 
-ARCH_BUILD = linux2.6-glibc2.3-x86_64
+ARCH_BUILD =linux-x86_64
 COMMON_DIR=com/platform/symphony/samples/SharingData/common
 CLIENT_DIR=com/platform/symphony/samples/SharingData/client
 SERVICE_DIR=com/platform/symphony/samples/SharingData/service
@@ -19,9 +19,7 @@ BIN=bin
 SRC=src
 
 
-JAVA_SDK_JARFILE = ${SOAM_HOME}/6.1.1/$(ARCH_BUILD)/lib/JavaSoamApi.jar
-#JAVA_SDK_JARFILE = ${SOAM_HOME}/7.1/$(ARCH_BUILD)/lib/JavaSoamApi.jar
-
+JAVA_SDK_JARFILE = ${SOAM_HOME}/7.1.1/$(ARCH_BUILD)/lib/JavaSoamApi.jar
 
 SERVICE_SCRIPT=Runcom.platform.symphony.samples.SharingData.service.SharingDataService.sh
 SERVICE_JAR=SharingDataServiceJava.jar

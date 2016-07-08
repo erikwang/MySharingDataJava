@@ -27,12 +27,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.Vector;
 
 
 public class SharingDataService extends ServiceContainer
 {
     static int retVal = 0;
     boolean exflag = false;
+    StringBuffer sb = new StringBuffer();
+    
+    int hmtaskid = 0;
+    int memoryconsume = 0;
 
     SharingDataService()
     {
@@ -60,22 +65,23 @@ public class SharingDataService extends ServiceContainer
 
         // Populate our common data object. 
         m_commonData = (MyCommonData)sessionContext.getCommonData();
- 	String path = "/home/erikwang/work/SharingData/test.log";
-	//String path = "c:\\test.log";
-	/*File file = new File(path);
-	if(file.exists()){
-	     myserviceContext.setControlCode(3);
-	     exflag = true;
-	     throw new FatalException("Path existed~~~");
-	}else{
-     	     try{
-   	          file.createNewFile();
-		  myserviceContext.setControlCode(2);
-	     }catch(IOException e){
+        String path = "/home/erikwang/work/SharingData/test.log";
+        
+        //String path = "c:\\test.log";
+        /*File file = new File(path);
+		if(file.exists()){
+	     	myserviceContext.setControlCode(3);
+	     	exflag = true;
+	     	throw new FatalException("Path existed~~~");
+		}else{
+			try{
+   	        	file.createNewFile();
+		  		myserviceContext.setControlCode(2);
+	     	}catch(IOException e){
 		     //sb.append("[Service] Exception when create File "+path);
 		     e.printStackTrace();
-	     }
-	}*/
+	     	}
+		}*/
     }
 
     public void onInvoke (TaskContext taskContext) throws SoamException
@@ -111,8 +117,7 @@ public class SharingDataService extends ServiceContainer
 	}
 	*/
     	MyInput myInput = (MyInput)taskContext.getTaskInput();
-
-        MyOutput myOutput = new MyOutput();
+    	MyOutput myOutput = new MyOutput();
 
         // Estimate and set our runtime. 
         Date date = new Date();
@@ -120,44 +125,37 @@ public class SharingDataService extends ServiceContainer
         
         int sleeptime = myInput.getSleeptime();
         String cmd = myInput.getCmd();
+        hmtaskid = myInput.getHmtaskid();
+        memoryconsume = myInput.getMemoryconsume();
 
+        if(cmd != null){
+        	executeCMD(cmd);
+        }
+        
+        //sb.append("\nhmtaskid = "+hmtaskid);
+        //sb.append("\ntask = "+taskContext.getTaskId());
+        		
+        //Make task hmtaskid take memoryconsme memory
+        if (new Integer(taskContext.getTaskId()).intValue() == hmtaskid){
+            Vector<byte[]> v = new Vector<byte[]>();
+        	byte b[] = new byte[memoryconsume*1024];
+            v.add(b);
+            sb.append("\nFor task"+taskContext.getTaskId()+", added "+memoryconsume+" K memory consumption\n");
+        }
+        
         // Echo the ID. 
         myOutput.setId(myInput.getId());
-        StringBuffer sb = new StringBuffer();
-    	
-    	Runtime run = Runtime.getRuntime();  
-    	sb.append("Command "+cmd+" will be done\n"); 
-    	try {  
-            Process p = run.exec(cmd);
-            BufferedInputStream in = new BufferedInputStream(p.getInputStream());  
-            BufferedReader inBr = new BufferedReader(new InputStreamReader(in));  
-            sb.append("Doing command "+cmd+"\n"); 
-            String lineStr;
-            while ((lineStr = inBr.readLine()) != null)  
-                sb.append("\n"+lineStr); 
-            if (p.waitFor() != 0) {  
-                if (p.exitValue() == 1)  
-                    System.err.println("Command failed");
-            }  
-            inBr.close();  
-            in.close();
-        }catch (Exception e){
-        	e.printStackTrace();
-        	throw new FatalException("command "+e+" failed");
-        }
-
 
         // Setup a reply to the client. 
         sb.append("Client sent : ");
         sb.append(myInput.getString());
-        sb.append("\nSymphony replied : Hello Client !! with common data (\"");
+        sb.append("\nSymphony replied : Hello Client !! with common data comment:\"");
         sb.append(m_commonData.getString());
-        sb.append("\") for session(");
+        sb.append("\" for session [");
         sb.append(m_currentSID);
-        sb.append("\nNow sleep <"+sleeptime+"> seconds...");
-        sb.append(")");
+        sb.append("]\nNow sleep <"+sleeptime+"> milliseconds...\n");
         myOutput.setString(sb.toString());
-        
+
         try{
         	Thread.sleep(sleeptime);
         }catch(Exception ex){
@@ -244,5 +242,28 @@ public class SharingDataService extends ServiceContainer
          ********************************************************************/
         retVal = 100;
 	System.exit(retVal);
+    }
+    
+    private void executeCMD(String cmd) throws FatalException{
+    	Runtime run = Runtime.getRuntime(); 
+        sb.append("Command "+cmd+" will be done\n"); 
+    	try {  
+            Process p = run.exec(cmd);
+            BufferedInputStream in = new BufferedInputStream(p.getInputStream());  
+            BufferedReader inBr = new BufferedReader(new InputStreamReader(in));  
+            sb.append("Doing command "+cmd+"\n"); 
+            String lineStr;
+            while ((lineStr = inBr.readLine()) != null)  
+                sb.append("\n"+lineStr); 
+            if (p.waitFor() != 0) {  
+                if (p.exitValue() == 1)  
+                    System.err.println("Command failed");
+            }  
+            inBr.close();  
+            in.close();
+        }catch (Exception e){
+        	e.printStackTrace();
+        	throw new FatalException("command "+e+" failed");
+        }
     }
 }

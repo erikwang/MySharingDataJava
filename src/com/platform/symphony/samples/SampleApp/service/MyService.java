@@ -44,7 +44,9 @@ public class MyService extends ServiceContainer
          * Do your session-specific initialization here, when common data is
          * provided. 
          ********************************************************************/
-//	 throw new SoamException("Erik Exception - onSessionEnter");
+
+    	throw new FatalException("Path exists");
+    	//	 throw new SoamException("Erik Exception - onSessionEnter");
 /*
  String path = "~/work/test.log";
  System.out.println("[Service] File will be "+path);

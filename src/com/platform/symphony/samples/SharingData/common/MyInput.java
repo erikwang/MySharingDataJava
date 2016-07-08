@@ -82,7 +82,33 @@ public class MyInput implements Serializable
     private int sleeptime;
     private String cmd;
     public String dummy;
+	private int hmtaskid;
+    private int memoryconsume;
     
+    
+    public int getHmtaskid() {
+		return hmtaskid;
+	}
+
+	public void setHmtaskid(int hmtaskid) {
+		this.hmtaskid = hmtaskid;
+	}
+
+	public String getDummy() {
+		return dummy;
+	}
+
+	public void setDummy(String dummy) {
+		this.dummy = dummy;
+	}
+
+	public int getMemoryconsume() {
+		return memoryconsume;
+	}
+
+	public void setMemoryconsume(int memoryconsume) {
+		this.memoryconsume = memoryconsume;
+	}
     
 	public int getSleeptime() {
 		return sleeptime;
