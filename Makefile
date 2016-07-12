@@ -19,7 +19,7 @@ BIN=bin
 SRC=src
 
 
-JAVA_SDK_JARFILE = ${SOAM_HOME}/7.1.1/$(ARCH_BUILD)/lib/JavaSoamApi.jar
+JAVA_SDK_JARFILE=${SOAM_HOME}/7.1.1/$(ARCH_BUILD)/lib/JavaSoamApi.jar
 
 SERVICE_SCRIPT=Runcom.platform.symphony.samples.SharingData.service.SharingDataService.sh
 SERVICE_JAR=SharingDataServiceJava.jar

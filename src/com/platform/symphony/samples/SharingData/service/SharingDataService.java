@@ -23,8 +23,7 @@ import com.platform.symphony.samples.SharingData.common.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
+
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Vector;
@@ -34,7 +33,7 @@ public class SharingDataService extends ServiceContainer
 {
     static int retVal = 0;
     boolean exflag = false;
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = new StringBuffer(); 
     
     int hmtaskid = 0;
     int memoryconsume = 0;
@@ -49,7 +48,7 @@ public class SharingDataService extends ServiceContainer
         /********************************************************************
          * Do your service initialization here. 
          ********************************************************************/
-	 myserviceContext = serviceContext;
+    	myserviceContext = serviceContext;
     }
 
     public void onSessionEnter(SessionContext sessionContext) throws SoamException
@@ -58,30 +57,12 @@ public class SharingDataService extends ServiceContainer
          * Do your session-specific initialization here, when common data is
          * provided. 
          ********************************************************************/
-	//MyOutput myOutput = new MyOutput();
-	//StringBuffer sb = new StringBuffer();
-        // Get the current session ID (if needed). 
-        m_currentSID = sessionContext.getSessionId();
-
-        // Populate our common data object. 
-        m_commonData = (MyCommonData)sessionContext.getCommonData();
-        String path = "/home/erikwang/work/SharingData/test.log";
-        
-        //String path = "c:\\test.log";
-        /*File file = new File(path);
-		if(file.exists()){
-	     	myserviceContext.setControlCode(3);
-	     	exflag = true;
-	     	throw new FatalException("Path existed~~~");
-		}else{
-			try{
-   	        	file.createNewFile();
-		  		myserviceContext.setControlCode(2);
-	     	}catch(IOException e){
-		     //sb.append("[Service] Exception when create File "+path);
-		     e.printStackTrace();
-	     	}
-		}*/
+    	//MyInput myInput = (MyInput)sessionContext.getCommonData();
+    	m_commonData = (MyCommonData)sessionContext.getCommonData();
+    	if ((m_commonData.getFunctionToThrowException()!= null)&&(m_commonData.getFunctionToThrowException().equals("onSessionEnter"))){
+    		myserviceContext.setControlCode(99);
+    		throw new FatalException("[DEBUG] A fatal exception is threw at onSessionEnter because -E is indicated");
+    	}
     }
 
     public void onInvoke (TaskContext taskContext) throws SoamException
@@ -91,47 +72,31 @@ public class SharingDataService extends ServiceContainer
          * submission. 
          ********************************************************************/
 
-
-	// Populate our common data object.
-	 //String path = "/home/erikwang/work/SharingData/test.log";
-	 //String path = "c:\\test.log";
-	 //System.out.println("[Service] File will be "+path);
-	 //sb.append("[Service] File will be "+path);
-	 //File file = new File(path);
-	 //if(file.exists()){
-	   // myserviceContext.setControlCode(2);
-	   // throw new FatalException("Path existed~~~");
-         //}else{
-	//	 try{                                                                                                                                                                      file.createNewFile();
-	//	      myserviceContext.setControlCode(2);
-	//	 }catch(IOException e){
-	//	      e.printStackTrace();
-	//	 }
-	//}	
-	
-	// Get the input that was sent from the client 
-        /*
-	if(exflag){
-        	myserviceContext.setControlCode(3);
-		throw new FatalException("Path existed~~~");
-	}
-	*/
+    	m_currentSID = taskContext.getSessionId();
     	MyInput myInput = (MyInput)taskContext.getTaskInput();
     	MyOutput myOutput = new MyOutput();
+    	if(myInput.getFunctionToThrowException()!= null){
+    		if (myInput.getFunctionToThrowException().equals("onInvoke")){
+        		myserviceContext.setControlCode(98);
+        		throw new FatalException("[DEBUG]A fatal exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
+        	}	
+    	}
+    	
 
-        // Estimate and set our runtime. 
+    	// Estimate and set our runtime. 
         Date date = new Date();
         myOutput.setRunTime(date.toString());
-        
+              
         int sleeptime = myInput.getSleeptime();
         String cmd = myInput.getCmd();
         hmtaskid = myInput.getHmtaskid();
         memoryconsume = myInput.getMemoryconsume();
-
+        
+        sb.append("Cmd is : "+cmd+"\n");
         if(cmd != null){
         	executeCMD(cmd);
         }
-        
+  
         //sb.append("\nhmtaskid = "+hmtaskid);
         //sb.append("\ntask = "+taskContext.getTaskId());
         		
@@ -142,7 +107,6 @@ public class SharingDataService extends ServiceContainer
             v.add(b);
             sb.append("\nFor task"+taskContext.getTaskId()+", added "+memoryconsume+" K memory consumption\n");
         }
-        
         // Echo the ID. 
         myOutput.setId(myInput.getId());
 
@@ -150,7 +114,9 @@ public class SharingDataService extends ServiceContainer
         sb.append("Client sent : ");
         sb.append(myInput.getString());
         sb.append("\nSymphony replied : Hello Client !! with common data comment:\"");
-        sb.append(m_commonData.getString());
+        if((m_commonData != null )&&(m_commonData.getString() != null)){
+        	sb.append(m_commonData.getString());	
+        }
         sb.append("\" for session [");
         sb.append(m_currentSID);
         sb.append("]\nNow sleep <"+sleeptime+"> milliseconds...\n");
@@ -176,6 +142,7 @@ public class SharingDataService extends ServiceContainer
         // We get a chance to free the common data here. 
         m_currentSID = null;
         m_commonData = null;
+        sb = new StringBuffer(); 
     }
 
     public void onDestroyService() throws SoamException
@@ -190,7 +157,7 @@ public class SharingDataService extends ServiceContainer
     //  Private Member Variables
     //=========================================================================
 
-    private MyCommonData m_commonData;
+    private MyCommonData m_commonData = null;
     private String m_currentSID;
     private ServiceContext myserviceContext;
     private MyOutput myOutput;
@@ -251,13 +218,13 @@ public class SharingDataService extends ServiceContainer
             Process p = run.exec(cmd);
             BufferedInputStream in = new BufferedInputStream(p.getInputStream());  
             BufferedReader inBr = new BufferedReader(new InputStreamReader(in));  
-            sb.append("Doing command "+cmd+"\n"); 
+            sb.append("Doing command "+cmd+"...\n"); 
             String lineStr;
             while ((lineStr = inBr.readLine()) != null)  
-                sb.append("\n"+lineStr); 
+                sb.append(lineStr+"\n"); 
             if (p.waitFor() != 0) {  
                 if (p.exitValue() == 1)  
-                    System.err.println("Command failed");
+                    System.err.println("Command failed.\n");
             }  
             inBr.close();  
             in.close();

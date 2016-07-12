@@ -65,8 +65,17 @@ public class MyCommonData implements Serializable
     private String m_string;
     private static final long serialVersionUID = 2L;
     byte[] fileData;
+    private String functionToThrowException = null;
     
-    public void makeDummy(String fileurl){
+    public String getFunctionToThrowException() {
+		return functionToThrowException;
+	}
+
+	public void setFunctionToThrowException(String functionToThrowException) {
+		this.functionToThrowException = functionToThrowException;
+	}
+
+	public void makeDummy(String fileurl){
 		
 		File f = new File(fileurl);
 		//the input.dat is the file to load into memory.

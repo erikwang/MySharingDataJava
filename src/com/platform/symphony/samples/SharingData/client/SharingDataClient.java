@@ -52,6 +52,7 @@ public class SharingDataClient{
         boolean detach = false;
         int hmtaskid = 0;
         int memoryconsume = 100;
+        String functionToThrowException = null;
         
         List<Option> optsList = new ArrayList<Option>();
         
@@ -66,7 +67,8 @@ public class SharingDataClient{
         //R - session id to be re-connect to
         //Q - close the client if tasks are submitted to a new created session as DETACH_ON_CLOSE
         //C - add additional M memory usage for a task
-        //M - additional memory usage for a task 
+        //M - additional memory usage for a task
+        //E - throw fatal exception at call e.g. onSessionEnter - now it accepts "onSessionEnter" and "onInvoke"
         
 
         for (int t=0; t < args.length; t++){
@@ -119,6 +121,9 @@ public class SharingDataClient{
                         	case 'M':
                         		memoryconsume = new Integer(args[t+1]).intValue();
                         		break;
+                        	case 'E':
+                        		functionToThrowException = args[t+1];
+                        		break;
                         }
                     }
                 t++;
@@ -161,6 +166,8 @@ public class SharingDataClient{
                     commonData.makeDummy(fileurl);
                     System.out.println(fileurl+" has been load as dummy with size "+commonData.getDummysize());
                     attributes.setCommonData(commonData);
+                    commonData.setFunctionToThrowException(functionToThrowException);
+                    commonData.setString("The common data comes from a file "+fileurl);
                 }
 
                 // Set up session creation attributes. 
@@ -189,6 +196,8 @@ public class SharingDataClient{
                             myInput.setSleeptime(sleeptime);
                             myInput.setHmtaskid(hmtaskid);
                             myInput.setMemoryconsume(memoryconsume);
+                            myInput.setFunctionToThrowException(functionToThrowException);
+                            myInput.setCmd(cmd);
 
                             // Create task attributes. 
                             TaskSubmissionAttributes taskAttr = new TaskSubmissionAttributes();
@@ -207,7 +216,7 @@ public class SharingDataClient{
                     
                     if (detach){
                     	session.close(SessionCloseFlags.DETACH_ON_CLOSE);
-                    	session.close();
+                    	//session.close();
                     	System.out.println("Successfully detached from session " + session.getId());
                         session = null;
                     }else{

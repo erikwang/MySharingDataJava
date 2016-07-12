@@ -84,9 +84,17 @@ public class MyInput implements Serializable
     public String dummy;
 	private int hmtaskid;
     private int memoryconsume;
+    private String functionToThrowException;
     
-    
-    public int getHmtaskid() {
+    public String getFunctionToThrowException() {
+		return functionToThrowException;
+	}
+
+	public void setFunctionToThrowException(String functionToThrowException) {
+		this.functionToThrowException = functionToThrowException;
+	}
+
+	public int getHmtaskid() {
 		return hmtaskid;
 	}
 
