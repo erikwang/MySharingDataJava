@@ -7,7 +7,7 @@
 #
 ######################################################################
 
-ARCH_BUILD =linux-x86_64
+ARCH_BUILD=linux2.6-glibc2.3-x86_64
 COMMON_DIR=com/platform/symphony/samples/SharingData/common
 CLIENT_DIR=com/platform/symphony/samples/SharingData/client
 SERVICE_DIR=com/platform/symphony/samples/SharingData/service
@@ -19,7 +19,7 @@ BIN=bin
 SRC=src
 
 
-JAVA_SDK_JARFILE=${SOAM_HOME}/7.1.1/$(ARCH_BUILD)/lib/JavaSoamApi.jar
+JAVA_SDK_JARFILE=${SOAM_HOME}/7.1/$(ARCH_BUILD)/lib/JavaSoamApi.jar
 
 SERVICE_SCRIPT=Runcom.platform.symphony.samples.SharingData.service.SharingDataService.sh
 SERVICE_JAR=SharingDataServiceJava.jar
@@ -49,6 +49,7 @@ SharingDataJava: makedir
 	javac -d ${BIN} -classpath $(JAVA_SDK_JARFILE) ${SRC}/${COMMON_DIR}/MyInput.java
 	javac -d ${BIN} -classpath $(JAVA_SDK_JARFILE) ${SRC}/${COMMON_DIR}/MyOutput.java
 	javac -d ${BIN} -classpath $(JAVA_SDK_JARFILE) ${SRC}/${COMMON_DIR}/MyCommonData.java
+	javac -d ${BIN} -classpath $(JAVA_SDK_JARFILE) ${SRC}/${COMMON_DIR}/MyException.java
 	javac -d ${BIN} -classpath "$(JAVA_SDK_JARFILE):${BIN}" \
                 ${SRC}/${CLIENT_DIR}/SharingDataClient.java
 		javac -d ${BIN} -classpath "$(JAVA_SDK_JARFILE):${BIN}" \
@@ -57,7 +58,7 @@ SharingDataJava: makedir
 jar:
 	cp ${SERVICE_SCRIPT} ${BIN}; \
         cd ${BIN};\
-        jar cf ${SERVICE_JAR} ${COMMON_DIR}/MyInput.class ${COMMON_DIR}/MyOutput.class ${COMMON_DIR}/MyCommonData.class ${SERVICE_DIR}/SharingDataService.class; \
+        jar cf ${SERVICE_JAR} ${COMMON_DIR}/MyInput.class ${COMMON_DIR}/MyOutput.class ${COMMON_DIR}/MyCommonData.class ${COMMON_DIR}/MyException.class ${SERVICE_DIR}/SharingDataService.class; \
         zip ${DEPLOYMENT_PACKAGE} ${SERVICE_JAR} ${SERVICE_SCRIPT}; \
         cp ${DEPLOYMENT_PACKAGE} ..; \
         rm -f *.jar ${DEPLOYMENT_PACKAGE} ${SERVICE_SCRIPT}

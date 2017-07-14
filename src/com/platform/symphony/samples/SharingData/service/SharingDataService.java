@@ -23,7 +23,6 @@ import com.platform.symphony.samples.SharingData.common.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Vector;
@@ -49,6 +48,8 @@ public class SharingDataService extends ServiceContainer
          * Do your service initialization here. 
          ********************************************************************/
     	myserviceContext = serviceContext;
+    	//throw new FatalException("[DEBUG] A fatal exception is threw at onCreateService");
+    	
     }
 
     public void onSessionEnter(SessionContext sessionContext) throws SoamException
@@ -71,17 +72,23 @@ public class SharingDataService extends ServiceContainer
          * Do your service logic here. This call applies to each task
          * submission. 
          ********************************************************************/
-
+    	
     	m_currentSID = taskContext.getSessionId();
     	MyInput myInput = (MyInput)taskContext.getTaskInput();
     	MyOutput myOutput = new MyOutput();
     	if(myInput.getFunctionToThrowException()!= null){
     		if (myInput.getFunctionToThrowException().equals("onInvoke")){
-        		myserviceContext.setControlCode(98);
-        		throw new FatalException("[DEBUG]A fatal exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
+        		//myserviceContext.setControlCode(98);
+        		//throw new FatalException("[DEBUG]A fatal exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
+    			try {
+					throw new MyException("[DEBUG]A user defined exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
+				} catch (MyException e) {
+					// TODO Auto-generated catch block
+					sb.append("!!!!!!!!!    Service caught an user defined exception !!!!!!!!!! \n");
+					e.printStackTrace();
+				}
         	}	
     	}
-    	
 
     	// Estimate and set our runtime. 
         Date date = new Date();
@@ -130,6 +137,7 @@ public class SharingDataService extends ServiceContainer
 
         // Set our output message 
         taskContext.setTaskOutput(myOutput);
+        
     }
 
     public void onSessionLeave() throws SoamException
@@ -180,7 +188,7 @@ public class SharingDataService extends ServiceContainer
             // Create the container and run it 
             SharingDataService myContainer = new SharingDataService();	   
             //myContainer.serviceContext = myserviceContext;
-	    myContainer.run();
+            myContainer.run();
 
             /****************************************************************
              * Do not implement any service uninitialization after calling
@@ -207,8 +215,8 @@ public class SharingDataService extends ServiceContainer
          * of the middleware. The value being returned here is for
          * consistency. 
          ********************************************************************/
-        retVal = 100;
-	System.exit(retVal);
+        //retVal = 100;
+	//System.exit(retVal);
     }
     
     private void executeCMD(String cmd) throws FatalException{
