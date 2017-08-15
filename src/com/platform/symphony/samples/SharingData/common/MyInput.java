@@ -85,8 +85,35 @@ public class MyInput implements Serializable
 	private int hmtaskid;
     private int memoryconsume;
     private String functionToThrowException;
+    private String functionToThrowUserException;
+    private String childProcess;
+    private String exitSI;
     
-    public String getFunctionToThrowException() {
+    public String getExitSI() {
+		return exitSI;
+	}
+
+	public void setExitSI(String exitSI) {
+		this.exitSI = exitSI;
+	}
+
+	public String getChildProcess() {
+		return childProcess;
+	}
+
+	public void setChildProcess(String childProcess) {
+		this.childProcess = childProcess;
+	}
+
+	public String getFunctionToThrowUserException() {
+		return functionToThrowUserException;
+	}
+
+	public void setFunctionToThrowUserException(String functionToThrowUserException) {
+		this.functionToThrowUserException = functionToThrowUserException;
+	}
+
+	public String getFunctionToThrowException() {
 		return functionToThrowException;
 	}
 

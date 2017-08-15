@@ -23,6 +23,7 @@ import com.platform.symphony.samples.SharingData.common.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Vector;
@@ -49,7 +50,13 @@ public class SharingDataService extends ServiceContainer
          ********************************************************************/
     	myserviceContext = serviceContext;
     	//throw new FatalException("[DEBUG] A fatal exception is threw at onCreateService");
-    	
+    	if (!myserviceContext.getApplicationName().equals("Global3") && !myserviceContext.getApplicationName().equals("SharingDataJava")){
+    		try{
+             	Thread.sleep(99999999);
+             }catch(Exception ex){
+             	ex.printStackTrace();
+             }	
+    	}
     }
 
     public void onSessionEnter(SessionContext sessionContext) throws SoamException
@@ -72,24 +79,32 @@ public class SharingDataService extends ServiceContainer
          * Do your service logic here. This call applies to each task
          * submission. 
          ********************************************************************/
-    	
+
     	m_currentSID = taskContext.getSessionId();
     	MyInput myInput = (MyInput)taskContext.getTaskInput();
     	MyOutput myOutput = new MyOutput();
+    	//For -X, exit with the code indicated
+		if(myInput.getExitSI()!= null){
+			System.exit(new Integer(myInput.getExitSI()));
+		}
+		
     	if(myInput.getFunctionToThrowException()!= null){
     		if (myInput.getFunctionToThrowException().equals("onInvoke")){
-        		//myserviceContext.setControlCode(98);
-        		//throw new FatalException("[DEBUG]A fatal exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
-    			try {
-					throw new MyException("[DEBUG]A user defined exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
-				} catch (MyException e) {
-					// TODO Auto-generated catch block
-					sb.append("!!!!!!!!!    Service caught an user defined exception !!!!!!!!!! \n");
-					e.printStackTrace();
-				}
+        		myserviceContext.setControlCode(98);
+        		
+        		//For -E
+        		throw new FatalException("[DEBUG]A fatal exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
+        	}else if(myInput.getFunctionToThrowUserException().equals("onInvoke")){
+        		try {
+        			throw new MyException("[DEBUG]A user defined exception is threw at ["+myInput.getFunctionToThrowException()+"] because -E is indicated");
+    			} catch (MyException e) {
+    				// TODO Auto-generated catch block
+    				sb.append("!!!!!!!!!    Service caught an user defined exception !!!!!!!!!! \n");
+    				e.printStackTrace();
+    			}
         	}	
-    	}
-
+       	}
+    	
     	// Estimate and set our runtime. 
         Date date = new Date();
         myOutput.setRunTime(date.toString());
@@ -114,6 +129,7 @@ public class SharingDataService extends ServiceContainer
             v.add(b);
             sb.append("\nFor task"+taskContext.getTaskId()+", added "+memoryconsume+" K memory consumption\n");
         }
+        
         // Echo the ID. 
         myOutput.setId(myInput.getId());
 
@@ -128,7 +144,26 @@ public class SharingDataService extends ServiceContainer
         sb.append(m_currentSID);
         sb.append("]\nNow sleep <"+sleeptime+"> milliseconds...\n");
         myOutput.setString(sb.toString());
-
+        
+        
+        //For Windows SI, try to spawn a child process - ping
+        if(myInput.getChildProcess()!= null){ 
+	        try {
+				//Process p = Runtime.getRuntime().exec("C:\\windows\\system32\\cmd.exe /c cmd.exe /c C:\\Windows\\system32\\ping.exe 127.0.0.1 -n 2 >nul");
+	        	Process p = Runtime.getRuntime().exec(myInput.getChildProcess());
+				try {
+					int retcode = p.waitFor();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
+        //Execute sleep corresponding to -r
         try{
         	Thread.sleep(sleeptime);
         }catch(Exception ex){

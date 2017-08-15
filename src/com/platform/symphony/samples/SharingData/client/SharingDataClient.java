@@ -42,6 +42,7 @@ class Option {
 public class SharingDataClient{
     public static void main(String args[]){
         String sessionType = null;
+        String appName = null;
         int sleeptime = 0;
         int numOfTask = 0;
         int sessionid = 0;
@@ -53,23 +54,30 @@ public class SharingDataClient{
         int hmtaskid = 0;
         int memoryconsume = 100;
         String functionToThrowException = null;
+        String functionToThrowUserException = null;
+        String childProcess = null;
+        String exitSI = null;
         
         List<Option> optsList = new ArrayList<Option>();
         
         //args[]
-        //s - sessionType, defined in application profile
-        //r - sleeptime
-        //m - number of tasks
-        //u - username
-        //x - password
-        //c - cmd to be executed in service instance
-        //d - use a file to simulate dummy common data
-        //R - session id to be re-connect to
+        //a - Indicate the application to connect, e.g. SharingDataJava - mandatory
+        //s - Indicate sessionType, defined in application profile
+        //r - Set sleeptime
+        //m - Set number of tasks
+        //u - Set username
+        //x - Set password
+        //c - A command to be executed in service instance
+        //d - Use a file to simulate dummy common data
+        //R - Session id to be re-connect to
         //Q - close the client if tasks are submitted to a new created session as DETACH_ON_CLOSE
-        //C - add additional M memory usage for a task
-        //M - additional memory usage for a task
-        //E - throw fatal exception at call e.g. onSessionEnter - now it accepts "onSessionEnter" and "onInvoke"
-        
+        //C - Add additional M memory usage for a task
+        //M - Additional memory usage for a task
+        //e - Throw user defined fatal exception at call e.g. onSessionEnter - now it accepts "onInvoke"
+        //E - Throw SOAM fatal exception at call e.g. onSessionEnter - now it accepts "onSessionEnter" and "onInvoke"
+        //X - Let SI exit from a function - now it accepts "onInvoke"
+        //P - Let SI spawn a child process. Currently it is a ping.exe, on Windows only.
+
 
         for (int t=0; t < args.length; t++){
         	switch (args[t].charAt(0)) {
@@ -84,6 +92,10 @@ public class SharingDataClient{
                         optsList.add(new Option(args[t], args[t+1]));
                         System.out.println("args = "+args[t]+";  value = "+args[t+1]);
                         switch (args[t].charAt(1)){
+                        	
+                        	case 'a':
+                        		appName = args[t+1];
+                        		break;
                         	case 's':
                         		sessionType = args[t+1];
                         		break;
@@ -124,6 +136,15 @@ public class SharingDataClient{
                         	case 'E':
                         		functionToThrowException = args[t+1];
                         		break;
+                        	case 'e':
+                        		functionToThrowUserException = args[t+1];
+                        		break;
+                        	case 'P':
+                        		childProcess = args[t+1];
+                        		break;
+                        	case 'X':
+                        		exitSI = args[t+1];
+                        		break;
                         }
                     }
                 t++;
@@ -141,7 +162,7 @@ public class SharingDataClient{
 
             // Set up application specific information to be supplied to
             // Symphony. 
-            String appName = "SharingDataJava";
+            //String appName = "SharingDataJava";
 
             // Set up application authentication information using the
             // default security provider. Ensure it exists for the lifetime
@@ -152,7 +173,6 @@ public class SharingDataClient{
             try{
                 // Connect to the specified application. 
                 connection = SoamFactory.connect(appName, securityCB);
-                
                 
                 // Retrieve and print our connection ID. 
                 System.out.println("connection ID=" + connection.getId());
@@ -197,7 +217,10 @@ public class SharingDataClient{
                             myInput.setHmtaskid(hmtaskid);
                             myInput.setMemoryconsume(memoryconsume);
                             myInput.setFunctionToThrowException(functionToThrowException);
+                            myInput.setFunctionToThrowUserException(functionToThrowUserException);
+                            myInput.setChildProcess(childProcess);
                             myInput.setCmd(cmd);
+                            myInput.setExitSI(exitSI);
 
                             // Create task attributes. 
                             TaskSubmissionAttributes taskAttr = new TaskSubmissionAttributes();

@@ -89,7 +89,6 @@ public class MyCommonData implements Serializable
 				if(readAmount> 0) {
 					buffer.write(block, 0, readAmount);
 				}
-
 			}
 			buffer.flush();
 			buffer.close();

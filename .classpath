@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/IBM_ADMIN/Desktop/eclipse/plugins/com.platform.symphony.plugins_6.1.1/JavaApiLib/JavaSoamApi.jar">
+	<classpathentry kind="lib" path="C:/IBM/Platform SymphonyDE/DE71/7.1/w2k3_x64-vc7-psdk/lib/JavaSoamApi.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:\Users\IBM_ADMIN\Desktop\eclipse\plugins\com.platform.symphony.plugins_1.0.0/reference/"/>
 		</attributes>
