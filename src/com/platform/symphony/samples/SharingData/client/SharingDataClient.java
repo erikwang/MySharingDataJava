@@ -57,6 +57,7 @@ public class SharingDataClient{
         String functionToThrowUserException = null;
         String childProcess = null;
         String exitSI = null;
+        String oc = null;
         
         List<Option> optsList = new ArrayList<Option>();
         
@@ -75,8 +76,9 @@ public class SharingDataClient{
         //M - Additional memory usage for a task
         //e - Throw user defined fatal exception at call e.g. onSessionEnter - now it accepts "onInvoke"
         //E - Throw SOAM fatal exception at call e.g. onSessionEnter - now it accepts "onSessionEnter" and "onInvoke"
-        //X - Let SI exit from a function - now it accepts "onInvoke"
-        //P - Let SI spawn a child process. Currently it is a ping.exe, on Windows only.
+        //X - Let SI exit from a function - For example -X "99"
+        //P - Let SI spawn a child process. For example "C:\\windows\\system32\\cmd.exe /c cmd.exe /c C:\\Windows\\system32\\ping.exe 127.0.0.1 -n 2 >nul"
+        //oc - Let SI timeout at onCreateService 
 
 
         for (int t=0; t < args.length; t++){
@@ -91,60 +93,69 @@ public class SharingDataClient{
                         // -opt
                         optsList.add(new Option(args[t], args[t+1]));
                         System.out.println("args = "+args[t]+";  value = "+args[t+1]);
-                        switch (args[t].charAt(1)){
-                        	
-                        	case 'a':
+                        String command;
+                        if(args[t].length() > 2 && (!(args[t].charAt(2)+"").equals(" "))){
+                        	command = args[t].charAt(1)+""+args[t].charAt(2);
+                        }else{
+                        	command = args[t].charAt(1)+"";
+                        }
+                         
+                        switch (command){
+                        	case "a":
                         		appName = args[t+1];
                         		break;
-                        	case 's':
+                        	case "s":
                         		sessionType = args[t+1];
                         		break;
-                        	case 'r':
+                        	case "r":
                         		try{
                         			sleeptime =  new Integer(args[t+1]).intValue();	
                         		}catch (Exception e){
                         			e.printStackTrace();
                         		}
                         		break;
-                        	case 'm':
+                        	case "m":
                         		numOfTask = new Integer(args[t+1]).intValue();
                         		break;
-                        	case 'u':
+                        	case "u":
                         		username = args[t+1];
                         		break;
-                        	case 'x':
+                        	case "x":
                         		password = args[t+1];
                         		break;
-                        	case 'c':
+                        	case "c":
                         		cmd = args[t+1];
                         		break;
-                        	case 'd':
+                        	case "d":
                         		fileurl = args[t+1];
                         		break;
-                        	case 'R':
+                        	case "R":
                         		sessionid = new Integer(args[t+1]).intValue();
                         		break;
-                        	case 'Q':
+                        	case "Q":
                         		detach = new Boolean(args[t+1]);
                         		break;
-                        	case 'C':
+                        	case "C":
                         		hmtaskid = new Integer(args[t+1]).intValue();
                         		break;
-                        	case 'M':
+                        	case "M":
                         		memoryconsume = new Integer(args[t+1]).intValue();
                         		break;
-                        	case 'E':
+                        	case "E":
                         		functionToThrowException = args[t+1];
                         		break;
-                        	case 'e':
+                        	case "e":
                         		functionToThrowUserException = args[t+1];
                         		break;
-                        	case 'P':
+                        	case "P":
                         		childProcess = args[t+1];
                         		break;
-                        	case 'X':
+                        	case "X":
                         		exitSI = args[t+1];
                         		break;
+                        	case "oc":
+                        		oc = args[t+1];
+                        		
                         }
                     }
                 t++;
@@ -221,6 +232,7 @@ public class SharingDataClient{
                             myInput.setChildProcess(childProcess);
                             myInput.setCmd(cmd);
                             myInput.setExitSI(exitSI);
+                            myInput.setocApplication(oc);
 
                             // Create task attributes. 
                             TaskSubmissionAttributes taskAttr = new TaskSubmissionAttributes();

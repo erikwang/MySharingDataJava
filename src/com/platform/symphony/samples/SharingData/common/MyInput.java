@@ -88,8 +88,17 @@ public class MyInput implements Serializable
     private String functionToThrowUserException;
     private String childProcess;
     private String exitSI;
+    private String ocApplication;
     
-    public String getExitSI() {
+    public String getOcPrecentage() {
+		return ocApplication;
+	}
+
+	public void setocApplication(String ocApplication) {
+		this.ocApplication = ocApplication;
+	}
+
+	public String getExitSI() {
 		return exitSI;
 	}
 

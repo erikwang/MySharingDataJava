@@ -38,29 +38,30 @@ public class SharingDataService extends ServiceContainer
     int hmtaskid = 0;
     int memoryconsume = 0;
 
-    SharingDataService()
-    {
+    SharingDataService(){
         super();
     }
 
-    public void onCreateService(ServiceContext serviceContext) throws SoamException
-    {
+    public void onCreateService(ServiceContext serviceContext) throws SoamException{
         /********************************************************************
          * Do your service initialization here. 
          ********************************************************************/
-    	myserviceContext = serviceContext;
     	//throw new FatalException("[DEBUG] A fatal exception is threw at onCreateService");
-    	if (!myserviceContext.getApplicationName().equals("Global3") && !myserviceContext.getApplicationName().equals("SharingDataJava")){
+    	
+    	if (!serviceContext.getApplicationName().equals("Global3") && !serviceContext.getApplicationName().equals("SharingDataJava")){
     		try{
-             	Thread.sleep(99999999);
+    			double randNumber = Math.random();
+    			if ((int)(randNumber*100) >50){
+    				Thread.sleep(999999);	
+    			}
              }catch(Exception ex){
              	ex.printStackTrace();
-             }	
+             	throw new SoamException(ex);
+             }
     	}
     }
 
-    public void onSessionEnter(SessionContext sessionContext) throws SoamException
-    {
+    public void onSessionEnter(SessionContext sessionContext) throws SoamException{
         /********************************************************************
          * Do your session-specific initialization here, when common data is
          * provided. 
@@ -73,8 +74,7 @@ public class SharingDataService extends ServiceContainer
     	}
     }
 
-    public void onInvoke (TaskContext taskContext) throws SoamException
-    {
+    public void onInvoke (TaskContext taskContext) throws SoamException{
         /********************************************************************
          * Do your service logic here. This call applies to each task
          * submission. 
@@ -146,7 +146,7 @@ public class SharingDataService extends ServiceContainer
         myOutput.setString(sb.toString());
         
         
-        //For Windows SI, try to spawn a child process - ping
+        //Try to spawn a child process - ping as example
         if(myInput.getChildProcess()!= null){ 
 	        try {
 				//Process p = Runtime.getRuntime().exec("C:\\windows\\system32\\cmd.exe /c cmd.exe /c C:\\Windows\\system32\\ping.exe 127.0.0.1 -n 2 >nul");
